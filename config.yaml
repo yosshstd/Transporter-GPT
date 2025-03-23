@@ -1,0 +1,47 @@
+# Model Configuration
+model:
+  model_name: "GreatCaptainNemo/ProLLaMA_Stage_1" # "GreatCaptainNemo/ProLLaMA_Stage_1"
+  max_seq_length: 900
+  dtype: None
+  load_in_4bit: False # True for 4-bit quantization
+
+# LoRA Configuration
+lora:
+  r: 64
+  lora_alpha: 64
+  lora_dropout: 0
+  bias: "none"
+  use_gradient_checkpointing: "unsloth"
+  random_state: 0
+  use_rslora: False
+  #loftq_config: {} # use {} instead of None to avoid error
+  target_modules: ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj", "embed_tokens", "lm_head"]
+  
+# Dataset Configuration
+dataset:
+  train_path: 'dataset/train-1024.parquet'
+  test_path: 'dataset/test-1024.parquet'
+
+# Training Configuration
+training:
+  per_device_train_batch_size: 8
+  gradient_accumulation_steps: 2
+  num_train_epochs: 2
+  learning_rate: 5e-4
+  embedding_learning_rate: 1e-4
+  #fp16: True
+  bf16: True
+  optim: "adamw_8bit"
+  weight_decay: 0.01
+  #warmup_ratio: 0.05
+  lr_scheduler_type: "cosine"
+  seed: 0
+  save_total_limit: 5
+  output_dir: "output"
+  save_strategy: "steps"
+  save_steps: 10  # 100 for 3090, 10 for H100
+  logging_steps: 1
+  report_to: "wandb" # "None"
+  packing: True
+  # push_to_hub: True
+  # hub_model_id: "EC-ProLLaMA"

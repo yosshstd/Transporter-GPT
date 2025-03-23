@@ -169,3 +169,14 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Add
+.env
+dataset/*
+output
+stored_output
+wandb
+memo.txt
+_unsloth_temporary_saved_buffers
+unsloth_compiled_cache
+*.requirements.txt

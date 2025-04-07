@@ -172,7 +172,8 @@ cython_debug/
 
 # Add
 .env
-dataset/*
+dataset
+dataset_old
 output
 stored_output
 wandb
@@ -180,3 +181,8 @@ memo.txt
 _unsloth_temporary_saved_buffers
 unsloth_compiled_cache
 *.requirements.txt
+tmp
+PLG
+PLU
+
+
